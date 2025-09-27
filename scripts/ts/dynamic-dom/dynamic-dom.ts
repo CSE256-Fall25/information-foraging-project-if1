@@ -4,10 +4,39 @@ import { doSomething } from './do-something';
 import { HTMLContent, itemsToCache } from './html-imports';
 import { Slideshow } from './slideshow';
 
+// function 1 - allows hover to open nav only after first interaction
+function navReady() {
+  const nav = document.getElementById('main-menu-container');
+  if (!nav) return;
+
+  // cannot open nav until first interaction
+  nav.classList.remove('nav-ready');
+
+  // after first interaction, add class to allow hover to open nav
+  const addNavReady = () => {
+    nav.classList.add('nav-ready');
+    afterFirstInteraction(); // clean up event listeners
+  };
+
+  const afterFirstInteraction = () => {
+    window.removeEventListener('pointermove', addNavReady);
+    window.removeEventListener('pointerdown', addNavReady);
+    window.removeEventListener('keydown', addNavReady);
+    window.removeEventListener('touchstart', addNavReady);
+  };
+
+  // event listeners for first interaction
+  window.addEventListener('pointermove', addNavReady, { once: true, passive: true });
+  window.addEventListener('pointerdown', addNavReady, { once: true });
+  window.addEventListener('keydown', addNavReady, { once: true });
+  window.addEventListener('touchstart', addNavReady, { once: true, passive: true });
+}
+
 // Put all function calls that need to be made on every page load inside the setupAll function body.
 export function PutStudentPageLoadOperationsInsideThisStudentBody() {
     // TODO: Put all operations that you want to happen on ever page load in this function.
     // For example you could write: Sticky.setup()
+    navReady();
     doSomething();
 }
 

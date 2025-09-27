@@ -1,3 +1,4 @@
+/* original */
 header {
     overflow: auto;
 }
@@ -44,107 +45,195 @@ header {
     text-decoration: underline;
 }
 
+/* new nav - ADDED */
 
-/* Navbar container */
+/* Sticky header */
+#main-menu-container {
+  position: sticky;
+  top: 43px;
+  z-index: 999;
+}
 
+/* navbar */
 .navbar {
-    overflow: hidden;
-    background-color: #3d3d3d;
-    font-family: Arial;
+  position: relative;
+  overflow: visible;
+  background: #3d3d3d;
+  font-family: Arial, sans-serif;
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
 }
 
-
-/* Links inside the navbar */
-
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+/* mega trigger */
+.mega-trigger {
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 16px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  cursor: default;
 }
 
-.navbar a:hover {
-    text-decoration: underline;
+.mega-trigger:hover {
+  text-decoration: none;
 }
 
-
-header a {
-    color: white;
+.mega-trigger::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 8px;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
-
-/* The dropdown container */
-
-.dropdown {
-    float: left;
-    overflow: hidden;
+.mega-trigger:hover::after,
+.mega-trigger:focus-visible::after {
+  transform: scaleX(1);
 }
 
-
-/* Dropdown button */
-
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
+/* mega panel layout */
+.mega-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: max-height 0.5s ease, opacity 0.2s ease,
+    visibility 0s linear 0.32s;
 }
 
-.dropdown .dropbtn a {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 0;
-    background-color: inherit;
+.nav-ready .mega:hover > .mega-panel,
+.nav-ready .mega:focus-within > .mega-panel {
+  max-height: 80vh;
+  min-height: 300px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: max-height 0.5s ease, opacity 0.2s ease 0.06s, visibility 0s;
 }
 
-
-/* Add a red background color to navbar links on hover */
-
-.navbar a:hover,
-.dropdown:hover .dropbtn {
-    background-color: #555;
+/* mega content */
+.mega-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  height: auto;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
-
-/* Dropdown content (hidden by default) */
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+.mega-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 32px;
+  align-items: stretch; /* equal height columns */
+  min-height: 0;
 }
 
-
-/* Links inside the dropdown */
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.nav-group p {
+  margin: 0;
 }
 
-
-/* Add a grey background color to dropdown links on hover */
-
-.dropdown-content a:hover {
-    background-color: #ddd;
+.nav-group a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: #3d3d3d;
 }
 
+.nav-group a:hover {
+  text-decoration: underline;
+}
 
-/* Show the dropdown menu on hover */
+.title-group .nav-title {
+  margin-bottom: 20px;
+}
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.nav-title {
+  margin-bottom: 10px;
+}
+
+.nav-title a {
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ba0c2f;
+  text-decoration: none;
+}
+
+.nav-title a:hover {
+  text-decoration: underline;
+}
+
+.nav-sub {
+  margin-bottom: 10px;
+}
+
+.nav-sub-title {
+  position: relative;
+  padding-bottom: 5px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.nav-sub-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 30px;
+  height: 2px;
+  background-color: #a51417;
+}
+
+/* media queries */
+@media (max-width: 1100px) {
+  .mega-content {
+    padding: 28px 20px;
+  }
+  .mega-columns {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .mega-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav-group.two-col {
+    columns: 1;
+  }
+}
+@media (max-width: 600px) {
+  .mega-columns {
+    grid-template-columns: 1fr;
+  }
+  .mega-content {
+    padding: 24px 16px;
+  }
 }
