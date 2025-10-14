@@ -1,48 +1,48 @@
 /* original */
 header {
-    overflow: auto;
+  overflow: auto;
 }
 
 #wustl-branding {
-    background-color: #a51417;
-    height: 2.625rem;
-    overflow: hidden;
-    padding-left: 4%;
-    padding-top: 7px;
+  background-color: #a51417;
+  height: 2.625rem;
+  overflow: hidden;
+  padding-left: 4%;
+  padding-top: 7px;
 }
 
 #main-menu-container {
-    width: 100%;
-    background-color: #3d3d3d;
+  width: 100%;
+  background-color: #3d3d3d;
 }
 
 .container {
-    width: 92%;
-    max-width: 71em;
-    margin-left: auto;
-    margin-right: auto;
+  width: 92%;
+  max-width: 71em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #washu-logo {
-    width: 256px;
+  width: 256px;
 }
 
 .site-title {
-    color: #3d3d3d;
-    display: block;
-    font-family: "Libre Baskerville", "Times New Roman", serif;
-    width: calc( 100% - 65px);
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    font-size: 3rem;
-    font-weight: 400;
-    line-height: 1.2;
-    text-decoration: none;
+  color: #3d3d3d;
+  display: block;
+  font-family: "Libre Baskerville", "Times New Roman", serif;
+  width: calc(100% - 65px);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
 }
 
 .site-title:hover {
-    color: #a51417;
-    text-decoration: underline;
+  color: #a51417;
+  text-decoration: underline;
 }
 
 /* new nav - ADDED */
@@ -214,6 +214,19 @@ header {
   width: 30px;
   height: 2px;
   background-color: #a51417;
+}
+
+.nav-sublinks {
+  margin-top: 6px;
+  margin-left: 10px;
+  padding-left: 14px;
+  border-left: 2px solid #eee;
+}
+
+.nav-sublinks p {
+  font-size: 1rem;
+  color: #646464;
+  margin: 8px 0;
 }
 
 /* media queries */
